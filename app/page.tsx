@@ -9,7 +9,7 @@ export default function Home() {
   }
 
   function write() {
-    setCardData("Hello from Next.js!");
+    // setCardData("Hello from Next.js!");
     setModalState("writing");
   }
 

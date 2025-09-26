@@ -14,7 +14,6 @@ export default function CardReading() {
     readNfc(
       (message) => {
         setCardData(decodeNfcRecord(message.records[0]));
-        alert(decodeNfcRecord(message.records[0]));
         setModalState("closed");
       },
       () => setModalState("error")

@@ -10,6 +10,7 @@ import {
   useState,
   ReactNode,
   ComponentType,
+  useEffect,
 } from "react";
 
 type ModalState = "closed" | "reading" | "writing" | "error" | "success";
@@ -17,14 +18,14 @@ type ModalState = "closed" | "reading" | "writing" | "error" | "success";
 type CardContextType = {
   modalState: ModalState;
   setModalState: (open: ModalState) => void;
-  cardData: string;
-  setCardData: (data: string) => void;
+  cardData: string | null;
+  setCardData: (data: string | null) => void;
 };
 
 const CardContext = createContext<CardContextType | undefined>(undefined);
 
 export function CardProvider({ children }: { children: ReactNode }) {
-  const [cardData, setCardData] = useState<string>("");
+  const [cardData, setCardData] = useState<string | null>(null);
   const [modalState, setModalState] = useState("closed" as ModalState);
 
   let content;
@@ -43,7 +44,12 @@ export function CardProvider({ children }: { children: ReactNode }) {
 
   return (
     <CardContext.Provider
-      value={{ cardData, setCardData, modalState, setModalState }}
+      value={{
+        cardData,
+        setCardData,
+        modalState,
+        setModalState,
+      }}
     >
       {content}
     </CardContext.Provider>

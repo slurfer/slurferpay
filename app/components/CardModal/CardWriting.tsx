@@ -8,12 +8,17 @@ import { useCard } from "@/context/CardModalContext";
 import CardInteracting from "./CardInteracting";
 
 export default function CardReading() {
-  const { modalState, cardData, setModalState } = useCard();
+  const { modalState, cardData, setCardData, setModalState } = useCard();
 
   useEffect(() => {
+    if (cardData === null) {
+      setModalState("error");
+      return;
+    }
     writeNfc(
       cardData,
       () => {
+        setCardData(null);
         setModalState("success");
       },
       () => {
