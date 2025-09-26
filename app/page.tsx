@@ -1,3 +1,4 @@
+"use client";
 import { readNfc } from "@/util/nfc";
 import { decodeNfcRecord } from "@/util/nfc";
 
