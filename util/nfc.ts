@@ -3,7 +3,6 @@ export const readNfc = async (
   onError: () => void
 ) => {
   try {
-    alert("Please tap your NFC card.");
     const ndef = new NDEFReader();
     await ndef.scan();
 
@@ -14,6 +13,7 @@ export const readNfc = async (
 
     ndef.addEventListener("reading", onScan);
   } catch (error) {
+    console.error("Error reading NFC:", error);
     onError();
   }
 };

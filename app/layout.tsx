@@ -1,5 +1,9 @@
+"use client";
 import "./globals.css";
+import { ReactNode, useState } from "react";
 import PhoneLayout from "./components/PhoneLayout";
+import { CardProvider } from "@/context/CardContext";
+import CardReader from "./components/CardReader/CardReader";
 
 export default function RootLayout({
   children,
@@ -9,7 +13,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <PhoneLayout>{children}</PhoneLayout>
+        <CardProvider>
+          <PhoneLayout>{children}</PhoneLayout>
+        </CardProvider>
       </body>
     </html>
   );
