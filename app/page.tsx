@@ -1,11 +1,16 @@
 "use client";
 import { decodeNfcRecord } from "@/util/nfc";
 import { useCard } from "@/context/CardModalContext";
-
+import { useEffect } from "react";
 export default function Home() {
-  const { setModalState } = useCard();
+  const { setCardData, setModalState } = useCard();
   function read() {
     setModalState("reading");
+  }
+
+  function write() {
+    setCardData("Hello from Next.js!");
+    setModalState("writing");
   }
 
   return (
@@ -15,6 +20,7 @@ export default function Home() {
       </h1>
       <div className="bg-blue-100 w-full">ahoj</div>
       <button onClick={read}>Read</button>
+      <button onClick={write}>Write</button>
     </div>
   );
 }

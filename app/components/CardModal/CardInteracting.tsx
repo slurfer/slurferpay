@@ -1,24 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { decodeNfcRecord, readNfc } from "@/util/nfc";
+import React from "react";
 import { Avatar, Button, Container, Typography } from "@mui/material";
 import { Sensors } from "@mui/icons-material";
 import { blue } from "@mui/material/colors";
-import { useCard } from "@/context/CardModalContext";
+import CloseModal from "./CloseModal";
 
-export default function CardModal() {
-  const { modalState, setModalState, setCardData } = useCard();
-
-  useEffect(() => {
-    readNfc(
-      (message) => {
-        setCardData(decodeNfcRecord(message.records[0]));
-        setModalState("closed");
-      },
-      () => setModalState("error")
-    );
-  }, [modalState]);
-
+export default function CardInteracting() {
   return (
     <Container maxWidth="sm">
       <div className="flex flex-col items-center justify-center min-h-screen">
@@ -38,13 +25,7 @@ export default function CardModal() {
 
         <div className="w-full m-[4.2rem]"></div>
 
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={() => setModalState("closed")}
-        >
-          RETURN
-        </Button>
+        <CloseModal />
       </div>
     </Container>
   );

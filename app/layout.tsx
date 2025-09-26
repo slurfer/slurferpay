@@ -3,7 +3,7 @@ import "./globals.css";
 import { ReactNode, useState } from "react";
 import PhoneLayout from "./components/PhoneLayout";
 import { CardProvider } from "@/context/CardModalContext";
-import CardModal from "./components/CardModal/CardModal";
+import CardModal from "./components/CardModal/CardReading";
 
 export default function RootLayout({
   children,

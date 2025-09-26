@@ -4,8 +4,9 @@ import { useCard } from "@/context/CardModalContext";
 import { Check, Clear } from "@mui/icons-material";
 import { Avatar, Button, Container, Typography } from "@mui/material";
 import { blue, green, red } from "@mui/material/colors";
+import CloseModal from "./CloseModal";
 
-export default function CardError() {
+export default function CardSuccess() {
   const { setModalState } = useCard();
   return (
     <Container maxWidth="sm">
@@ -24,13 +25,7 @@ export default function CardError() {
           Information written cuccessfully
         </Typography>
         <div className="w-full m-[4.2rem]"></div>
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={() => setModalState("closed")}
-        >
-          RETURN
-        </Button>
+        <CloseModal />
       </div>
     </Container>
   );

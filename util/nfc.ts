@@ -18,6 +18,8 @@ export const readNfc = async (
   }
 };
 
+let writeLock = false;
+
 export const writeNfc = async (
   message: string,
   onDone: () => void,
@@ -25,7 +27,10 @@ export const writeNfc = async (
 ) => {
   try {
     const ndef = new NDEFReader();
+    if (writeLock) return;
+    writeLock = true;
     await ndef.write(message);
+    writeLock = false;
     onDone();
   } catch (error) {
     onError();

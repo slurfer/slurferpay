@@ -4,6 +4,7 @@ import { useCard } from "@/context/CardModalContext";
 import { Clear } from "@mui/icons-material";
 import { Avatar, Button, Container, Typography } from "@mui/material";
 import { blue, green, red } from "@mui/material/colors";
+import CloseModal from "./CloseModal";
 
 export default function CardError() {
   const { setModalState } = useCard();
@@ -24,13 +25,7 @@ export default function CardError() {
           Error while changing card balance
         </Typography>
         <div className="w-full m-[4.2rem]"></div>
-        <Button
-          variant="contained"
-          fullWidth
-          onClick={() => setModalState("closed")}
-        >
-          RETURN
-        </Button>
+        <CloseModal />
       </div>
     </Container>
   );
