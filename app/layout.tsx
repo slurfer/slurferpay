@@ -2,8 +2,8 @@
 import "./globals.css";
 import { ReactNode, useState } from "react";
 import PhoneLayout from "./components/PhoneLayout";
-import { CardProvider } from "@/context/CardContext";
-import CardReader from "./components/CardReader/CardReader";
+import { CardProvider } from "@/context/CardModalContext";
+import CardModal from "./components/CardModal/CardModal";
 
 export default function RootLayout({
   children,

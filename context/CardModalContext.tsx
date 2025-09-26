@@ -1,7 +1,8 @@
 "use client";
 
-import CardReader from "@/app/components/CardReader/CardReader";
-import CardError from "@/app/components/CardReader/CardError";
+import CardModal from "@/app/components/CardModal/CardModal";
+import CardError from "@/app/components/CardModal/CardError";
+import CardSuccess from "@/app/components/CardModal/CardSuccess";
 import {
   createContext,
   useContext,
@@ -10,7 +11,7 @@ import {
   ComponentType,
 } from "react";
 
-type ModalState = "closed" | "reading" | "error";
+type ModalState = "closed" | "reading" | "error" | "success";
 
 type CardContextType = {
   modalState: ModalState;
@@ -30,7 +31,9 @@ export function CardProvider({ children }: { children: ReactNode }) {
   if (modalState === "error") {
     content = <CardError />;
   } else if (modalState === "reading") {
-    content = <CardReader />;
+    content = <CardModal />;
+  } else if (modalState === "success") {
+    content = <CardSuccess />;
   } else {
     content = children;
   }

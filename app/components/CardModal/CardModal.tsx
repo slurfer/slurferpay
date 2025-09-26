@@ -4,9 +4,9 @@ import { decodeNfcRecord, readNfc } from "@/util/nfc";
 import { Avatar, Button, Container, Typography } from "@mui/material";
 import { Sensors } from "@mui/icons-material";
 import { blue } from "@mui/material/colors";
-import { useCard } from "@/context/CardContext";
+import { useCard } from "@/context/CardModalContext";
 
-export default function CardReader() {
+export default function CardModal() {
   const { modalState, setModalState, setCardData } = useCard();
 
   useEffect(() => {

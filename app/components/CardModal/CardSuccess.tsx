@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useCard } from "@/context/CardContext";
-import { Clear } from "@mui/icons-material";
+import { useCard } from "@/context/CardModalContext";
+import { Check, Clear } from "@mui/icons-material";
 import { Avatar, Button, Container, Typography } from "@mui/material";
 import { blue, green, red } from "@mui/material/colors";
 
@@ -12,16 +12,16 @@ export default function CardError() {
       <div className="flex flex-col items-center justify-center min-h-screen">
         <Avatar
           sx={{
-            bgcolor: red[500],
+            bgcolor: green[500],
             width: 156,
             height: 156,
           }}
         >
-          <Clear style={{ fontSize: "5rem" }} />
+          <Check style={{ fontSize: "5rem" }} />
         </Avatar>
         <div className="w-full m-[1.8rem]"></div>
         <Typography variant="h4" align="center">
-          Error while changing card balance
+          Information written cuccessfully
         </Typography>
         <div className="w-full m-[4.2rem]"></div>
         <Button

@@ -1,6 +1,6 @@
 "use client";
 import { decodeNfcRecord } from "@/util/nfc";
-import { useCard } from "@/context/CardContext";
+import { useCard } from "@/context/CardModalContext";
 
 export default function Home() {
   const { setModalState } = useCard();
