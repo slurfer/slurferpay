@@ -1,6 +1,7 @@
 "use client";
 
 import CardReader from "@/app/components/CardReader/CardReader";
+import CardError from "@/app/components/CardReader/CardError";
 import {
   createContext,
   useContext,
@@ -9,9 +10,11 @@ import {
   ComponentType,
 } from "react";
 
+type ModalState = "closed" | "reading" | "error";
+
 type CardContextType = {
-  isOpen: boolean;
-  setIsOpen: (open: boolean) => void;
+  modalState: ModalState;
+  setModalState: (open: ModalState) => void;
   cardData: string | null;
   setCardData: (data: string | null) => void;
 };
@@ -20,11 +23,23 @@ const CardContext = createContext<CardContextType | undefined>(undefined);
 
 export function CardProvider({ children }: { children: ReactNode }) {
   const [cardData, setCardData] = useState<string | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [modalState, setModalState] = useState("closed" as ModalState);
+
+  let content;
+
+  if (modalState === "error") {
+    content = <CardError />;
+  } else if (modalState === "reading") {
+    content = <CardReader />;
+  } else {
+    content = children;
+  }
 
   return (
-    <CardContext.Provider value={{ cardData, setCardData, isOpen, setIsOpen }}>
-      {isOpen ? <CardReader /> : children}
+    <CardContext.Provider
+      value={{ cardData, setCardData, modalState, setModalState }}
+    >
+      {content}
     </CardContext.Provider>
   );
 }

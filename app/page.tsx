@@ -3,9 +3,9 @@ import { decodeNfcRecord } from "@/util/nfc";
 import { useCard } from "@/context/CardContext";
 
 export default function Home() {
-  const { setIsOpen } = useCard();
+  const { setModalState } = useCard();
   function read() {
-    setIsOpen(true);
+    setModalState("reading");
   }
 
   return (

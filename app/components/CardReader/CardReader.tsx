@@ -7,17 +7,17 @@ import { blue } from "@mui/material/colors";
 import { useCard } from "@/context/CardContext";
 
 export default function CardReader() {
-  const { isOpen, setIsOpen, setCardData } = useCard();
+  const { modalState, setModalState, setCardData } = useCard();
 
   useEffect(() => {
     readNfc(
       (message) => {
         setCardData(decodeNfcRecord(message.records[0]));
-        setIsOpen(false);
+        setModalState("closed");
       },
-      () => alert("Error while reading card.")
+      () => setModalState("error")
     );
-  }, [isOpen]);
+  }, [modalState]);
 
   return (
     <Container maxWidth="sm">
@@ -32,13 +32,17 @@ export default function CardReader() {
           <Sensors style={{ fontSize: "5rem" }} />
         </Avatar>
 
-        <div className="w-full m-4"></div>
+        <div className="w-full m-[1.8rem]"></div>
 
         <Typography variant="h6">Hold the card near the reader</Typography>
 
-        <div className="w-full m-10"></div>
+        <div className="w-full m-[4.2rem]"></div>
 
-        <Button variant="contained" fullWidth onClick={() => setIsOpen(false)}>
+        <Button
+          variant="contained"
+          fullWidth
+          onClick={() => setModalState("closed")}
+        >
           RETURN
         </Button>
       </div>

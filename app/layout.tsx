@@ -13,9 +13,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <CardProvider>
-          <PhoneLayout>{children}</PhoneLayout>
-        </CardProvider>
+        <PhoneLayout>
+          <CardProvider>{children}</CardProvider>
+        </PhoneLayout>
       </body>
     </html>
   );
