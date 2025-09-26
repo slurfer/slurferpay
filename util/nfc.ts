@@ -1,5 +1,3 @@
-"use client";
-
 export const readNfc = async (
   onRead: (message: NDEFMessage, serialNumber: any) => void,
   onError: () => void
