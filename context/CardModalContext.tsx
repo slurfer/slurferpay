@@ -4,6 +4,7 @@ import CardReading from "@/app/components/CardModal/CardReading";
 import CardError from "@/app/components/CardModal/CardError";
 import CardSuccess from "@/app/components/CardModal/CardSuccess";
 import CardWriting from "@/app/components/CardModal/CardWriting";
+import Loading from "@/app/components/CardModal/Loading";
 import {
   createContext,
   useContext,
@@ -13,7 +14,13 @@ import {
   useEffect,
 } from "react";
 
-type ModalState = "closed" | "reading" | "writing" | "error" | "success";
+type ModalState =
+  | "closed"
+  | "reading"
+  | "writing"
+  | "error"
+  | "success"
+  | "loading";
 
 type CardContextType = {
   modalState: ModalState;
@@ -44,6 +51,8 @@ export function CardProvider({ children }: { children: ReactNode }) {
     content = <CardWriting />;
   } else if (modalState === "success") {
     content = <CardSuccess />;
+  } else if (modalState === "loading") {
+    content = <Loading />;
   } else {
     content = children;
   }

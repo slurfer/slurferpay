@@ -8,7 +8,7 @@ import { useCard } from "@/context/CardModalContext";
 import { useEffect, useRef, useState } from "react";
 
 export default function ShopPage() {
-  const { cardData, buyItem, setBuyItem } = useCard();
+  const { cardData, buyItem, setBuyItem, setModalState } = useCard();
   const { shopName } = useParams();
   const booths: ItemType[] = config.items;
 
@@ -18,6 +18,7 @@ export default function ShopPage() {
     if (cardData === null || buyItem === null || paymentInProgress.current)
       return;
     paymentInProgress.current = true;
+    setModalState("loading");
     const { name, price } = buyItem;
     setBuyItem(null);
 
@@ -30,6 +31,7 @@ export default function ShopPage() {
         body: JSON.stringify({ name, price: Number(price), card: cardData }),
       });
       paymentInProgress.current = false;
+      setModalState(res.ok ? "closed" : "error");
     }
 
     handlePayment();
