@@ -2,10 +2,11 @@
 import ItemButton from "@/app/components/Buttons/Button";
 import LinkButton from "./components/Buttons/LinkButton";
 import Header from "@/app/components/Header";
+import PhoneLayout from "./components/PhoneLayout";
 
 export default function Home() {
   return (
-    <div>
+    <PhoneLayout>
       <Header
         blackText="Welcome to"
         blueText="EconGame!"
@@ -17,6 +18,6 @@ export default function Home() {
       <ItemButton type="tool" onClick={() => alert("Clicked!")}>
         Click me
       </ItemButton>
-    </div>
+    </PhoneLayout>
   );
 }
