@@ -5,6 +5,7 @@ import { useCard } from "@/context/CardModalContext";
 import { useEffect, useRef, useState } from "react";
 import Header from "@/app/components/Header";
 import { ApiPrices } from "@/types/api/prices";
+import RefreshCounter from "@/app/components/RefreshCounter";
 
 export default function ShopPage() {
   const { cardData, buyItem, setBuyItem, setModalState } = useCard();
@@ -95,6 +96,7 @@ export default function ShopPage() {
           />
         ))}
       </div>
+      <RefreshCounter />
     </div>
   );
 }
