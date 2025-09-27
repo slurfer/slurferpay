@@ -12,8 +12,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <PhoneLayout>
-          {children}
           <BackButton />
+          {children}
         </PhoneLayout>
       </body>
     </html>
