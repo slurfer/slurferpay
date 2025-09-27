@@ -15,7 +15,7 @@ export default function Read() {
 
   return (
     <div>
-      <Header blueText="Read" />
+      <Header blueText="Read" backButtonLink="/terminal" />
       <pre>{JSON.stringify(cardData, null, 2)}</pre>
       <Button type="tool" onClick={onClick}>
         Read

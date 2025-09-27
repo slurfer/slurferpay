@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <div>
-      <Header blueText="Terminal" showBackButton={true} />
+      <Header blueText="Terminal" showBackButton={true} backButtonLink="/" />
       <div className="w-full m-15"></div>
 
       {shops.map((shop) => (

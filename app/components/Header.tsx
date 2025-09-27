@@ -4,10 +4,12 @@ export default function Header({
   blackText,
   blueText,
   showBackButton = true,
+  backButtonLink = undefined,
 }: {
   blackText?: string;
   blueText?: string;
   showBackButton?: boolean;
+  backButtonLink?: string;
 }) {
   return (
     <div className="relative">
@@ -18,7 +20,7 @@ export default function Header({
         </span>
       </h1>
       <div className="w-full m-15"></div>
-      {showBackButton && <BackButton />}
+      {showBackButton && <BackButton link={backButtonLink} />}
     </div>
   );
 }

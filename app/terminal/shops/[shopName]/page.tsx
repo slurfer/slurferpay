@@ -42,7 +42,11 @@ export default function ShopPage() {
 
   return (
     <div>
-      <Header blueText={shopName} showBackButton={true} />
+      <Header
+        blueText={shopName}
+        showBackButton={true}
+        backButtonLink="/terminal"
+      />
       <br />
       <div className="grid grid-cols-2">
         {items.map((item) => (

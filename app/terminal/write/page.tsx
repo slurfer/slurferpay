@@ -18,7 +18,7 @@ export default function Read() {
 
   return (
     <div className="text-center">
-      <Header blueText="Write" />
+      <Header blueText="Write" backButtonLink="/terminal" />
 
       <div className="my-5">
         <textarea
