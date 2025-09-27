@@ -1,26 +1,20 @@
 "use client";
-import { decodeNfcRecord } from "@/util/nfc";
-import { useCard } from "@/context/CardModalContext";
-import { useEffect } from "react";
+import ItemButton from "@/app/components/Buttons/Button";
+import LinkButton from "./components/Buttons/LinkButton";
+
 export default function Home() {
-  const { setCardData, setModalState } = useCard();
-  function read() {
-    setModalState("reading");
-  }
-
-  function write() {
-    // setCardData("Hello from Next.js!");
-    setModalState("writing");
-  }
-
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
+    <div>
       <h1 className="text-4xl font-bold text-center">
-        Welcome to <span className="text-blue-600">Next.js!</span>
+        Welcome to <span className="text-blue-600">EconGame!</span>
       </h1>
-      <div className="bg-blue-100 w-full">ahoj</div>
-      <button onClick={read}>Read</button>
-      <button onClick={write}>Write</button>
+      <div className="w-full m-15"></div>
+      <LinkButton type="tool" link="/terminal">
+        Terminal
+      </LinkButton>
+      <ItemButton type="tool" onClick={() => alert("Clicked!")}>
+        Click me
+      </ItemButton>
     </div>
   );
 }

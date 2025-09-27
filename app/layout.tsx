@@ -1,9 +1,7 @@
 "use client";
 import "./globals.css";
-import { ReactNode, useState } from "react";
-import PhoneLayout from "./components/PhoneLayout";
-import { CardProvider } from "@/context/CardModalContext";
-import CardModal from "./components/CardModal/CardReading";
+import PhoneLayout from "@/app/components/PhoneLayout";
+import BackButton from "./components/Buttons/BackButton";
 
 export default function RootLayout({
   children,
@@ -14,7 +12,8 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <PhoneLayout>
-          <CardProvider>{children}</CardProvider>
+          {children}
+          <BackButton />
         </PhoneLayout>
       </body>
     </html>

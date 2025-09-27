@@ -1,9 +1,13 @@
+let readLock = false;
+
 export const readNfc = async (
   onRead: (message: NDEFMessage, serialNumber: any) => void,
   onError: () => void
 ) => {
   try {
     const ndef = new NDEFReader();
+    if (readLock) return;
+    readLock = true;
     await ndef.scan();
 
     const onScan = ({ message, serialNumber }: any) => {
@@ -12,6 +16,7 @@ export const readNfc = async (
     };
 
     ndef.addEventListener("reading", onScan);
+    readLock = false;
   } catch (error) {
     console.error("Error reading NFC:", error);
     onError();

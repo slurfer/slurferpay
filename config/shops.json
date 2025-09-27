@@ -1,0 +1,25 @@
+{
+  "booths": ["Billa", "Kaufland", "Lidl", "Albert", "Penny"],
+  "items": [
+    {
+      "name": "Jablko",
+      "prices": [10, 12, 14, 20, 30]
+    },
+    {
+      "name": "Hruška",
+      "prices": [15, 18, 20, 25, 35]
+    },
+    {
+      "name": "Banán",
+      "prices": [20, 22, 25, 30, 40]
+    },
+    {
+      "name": "Pomeranč",
+      "prices": [25, 28, 30, 35, 45]
+    },
+    {
+      "name": "Meloun",
+      "prices": [30, 32, 35, 40, 50]
+    }
+  ]
+}

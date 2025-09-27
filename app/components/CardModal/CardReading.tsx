@@ -8,9 +8,10 @@ import { useCard } from "@/context/CardModalContext";
 import CardInteracting from "./CardInteracting";
 
 export default function CardReading() {
-  const { modalState, setModalState, setCardData } = useCard();
+  const { cardData, modalState, setModalState, setCardData } = useCard();
 
   useEffect(() => {
+    if (modalState !== "reading" || cardData !== null) return;
     readNfc(
       (message) => {
         setCardData(decodeNfcRecord(message.records[0]));
