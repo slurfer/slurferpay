@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Button from "@/app/components/Buttons/Button";
 import { useCard } from "@/context/CardModalContext";
+import Header from "@/app/components/Header";
 
 export default function Read() {
   const { cardData, setCardData, setModalState } = useCard();
@@ -17,9 +18,7 @@ export default function Read() {
 
   return (
     <div className="text-center">
-      <h1 className="text-4xl font-bold">
-        <span className="text-blue-600">Read</span>
-      </h1>
+      <Header blueText="Write" />
 
       <div className="my-5">
         <textarea

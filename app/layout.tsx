@@ -11,10 +11,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <PhoneLayout>
-          <BackButton />
-          {children}
-        </PhoneLayout>
+        <PhoneLayout>{children}</PhoneLayout>
       </body>
     </html>
   );

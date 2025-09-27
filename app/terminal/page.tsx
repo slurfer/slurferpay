@@ -4,24 +4,25 @@ import { useCard } from "@/context/CardModalContext";
 import { useEffect } from "react";
 import ItemButton from "@/app/components/Buttons/Button";
 import LinkButton from "@/app/components/Buttons/LinkButton";
+import Header from "../components/Header";
+import config from "@/config/shops.json";
 
 export default function Home() {
-  const { cardData, setModalState } = useCard();
-
-  function read() {
-    setModalState("reading");
-  }
-
-  function write() {
-    setModalState("writing");
-  }
+  const shops: string[] = config.shops;
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center">
-        <span className="text-blue-600">Terminal</span>
-      </h1>
+      <Header blueText="Terminal" showBackButton={true} />
       <div className="w-full m-15"></div>
+
+      {shops.map((shop) => (
+        <LinkButton key={shop} type="subs" link={`/terminal/shops/${shop}`}>
+          {shop}
+        </LinkButton>
+      ))}
+
+      <div className="w-full m-15"></div>
+
       <LinkButton type="tool" link="/terminal/read">
         Read
       </LinkButton>

@@ -1,5 +1,5 @@
 {
-  "booths": ["Billa", "Kaufland", "Lidl", "Albert", "Penny"],
+  "shops": ["Billa", "Kaufland", "Lidl", "Albert", "Penny"],
   "items": [
     {
       "name": "Jablko",

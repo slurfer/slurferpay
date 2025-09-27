@@ -1,16 +1,19 @@
 "use client";
 
 import Item from "@/app/components/Item";
-import { useParams } from "next/navigation";
+import { notFound, useParams } from "next/navigation";
 import config from "@/config/shops.json";
 import { ItemType } from "@/types/ItemType";
 import { useCard } from "@/context/CardModalContext";
 import { useEffect, useRef, useState } from "react";
+import Header from "@/app/components/Header";
 
 export default function ShopPage() {
   const { cardData, buyItem, setBuyItem, setModalState } = useCard();
-  const { shopName } = useParams();
-  const booths: ItemType[] = config.items;
+  const { shopName }: { shopName: string } = useParams();
+  const items: ItemType[] = config.items;
+  const shops: string[] = config.shops;
+  if (!shops.includes(shopName)) notFound();
 
   const paymentInProgress = useRef(false);
 
@@ -39,10 +42,10 @@ export default function ShopPage() {
 
   return (
     <div>
-      Shop Page: {shopName}
+      <Header blueText={shopName} showBackButton={true} />
       <br />
       <div className="grid grid-cols-2">
-        {booths.map((item) => (
+        {items.map((item) => (
           <Item
             key={item.name}
             name={item.name}

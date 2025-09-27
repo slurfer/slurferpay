@@ -1,14 +1,16 @@
 "use client";
 import ItemButton from "@/app/components/Buttons/Button";
 import LinkButton from "./components/Buttons/LinkButton";
+import Header from "@/app/components/Header";
 
 export default function Home() {
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center">
-        Welcome to <span className="text-blue-600">EconGame!</span>
-      </h1>
-      <div className="w-full m-15"></div>
+      <Header
+        blackText="Welcome to"
+        blueText="EconGame!"
+        showBackButton={false}
+      />
       <LinkButton type="tool" link="/terminal">
         Terminal
       </LinkButton>

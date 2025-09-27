@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/app/components/Buttons/Button";
+import Header from "@/app/components/Header";
 import { useCard } from "@/context/CardModalContext";
 import { useEffect } from "react";
 
@@ -14,10 +15,7 @@ export default function Read() {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-center">
-        <span className="text-blue-600">Read</span>
-      </h1>
-      <div className="w-full m-15 text-center"></div>
+      <Header blueText="Read" />
       <pre>{JSON.stringify(cardData, null, 2)}</pre>
       <Button type="tool" onClick={onClick}>
         Read
