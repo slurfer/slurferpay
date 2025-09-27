@@ -2,6 +2,7 @@
 import "./globals.css";
 import PhoneLayout from "@/app/components/PhoneLayout";
 import BackButton from "./components/Buttons/BackButton";
+import { ShopDataProvider } from "@/context/ShopDataContext";
 
 export default function RootLayout({
   children,
@@ -10,7 +11,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="bg-white">
+          <ShopDataProvider>{children}</ShopDataProvider>
+        </div>
+      </body>
     </html>
   );
 }

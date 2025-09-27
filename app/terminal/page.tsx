@@ -6,12 +6,13 @@ import ItemButton from "@/app/components/Buttons/Button";
 import LinkButton from "@/app/components/Buttons/LinkButton";
 import Header from "../components/Header";
 import config from "@/config/shops.json";
+import PhoneLayout from "../components/PhoneLayout";
 
 export default function Home() {
   const shops: string[] = config.shops;
 
   return (
-    <div>
+    <PhoneLayout>
       <Header blueText="Terminal" showBackButton={true} backButtonLink="/" />
       <div className="w-full m-15"></div>
 
@@ -29,6 +30,6 @@ export default function Home() {
       <LinkButton type="tool" link="/terminal/write">
         Write
       </LinkButton>
-    </div>
+    </PhoneLayout>
   );
 }

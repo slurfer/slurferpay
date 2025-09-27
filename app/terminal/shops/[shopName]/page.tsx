@@ -6,57 +6,19 @@ import { useEffect, useRef, useState } from "react";
 import Header from "@/app/components/Header";
 import { ApiPrices } from "@/types/api/prices";
 import RefreshCounter from "@/app/components/RefreshCounter";
+import { useShopData } from "@/context/ShopDataContext";
 
 export default function ShopPage() {
   const { cardData, buyItem, setBuyItem, setModalState, setCardData } =
     useCard();
+  const { items, shops } = useShopData();
   const { shopName }: { shopName: string } = useParams();
-
-  const [items, setItems] = useState<ApiPrices["items"]>([]);
-  const [shops, setShops] = useState<string[]>([]);
-  const paymentInProgress = useRef(false);
-
-  useEffect(() => {
-    async function loadData() {
-      const res = await fetch("/api/prices");
-      if (!res.ok) return;
-      const data: ApiPrices = await res.json();
-      setItems(data.items);
-      setShops(data.shops);
-    }
-
-    loadData();
-
-    function msUntilNextInterval() {
-      const now = new Date();
-      const minutes = now.getMinutes();
-      const seconds = now.getSeconds();
-      const ms = now.getMilliseconds();
-
-      // kolik minut zbývá do nejbližšího násobku 5
-      const next = 5 - (minutes % 5);
-      return next * 60_000 - seconds * 1000 - ms;
-    }
-
-    // první timeout – dorovnáme na nejbližší 5. minutu
-    const firstTimeout = setTimeout(() => {
-      loadData();
-
-      // pak už nastavíme klasický interval každých 5 minut
-      const interval = setInterval(loadData, 5 * 60_000);
-      // ulož interval do ref, pokud chceš clearovat při unmountu
-      (window as any).pricesInterval = interval;
-    }, msUntilNextInterval());
-
-    return () => {
-      clearTimeout(firstTimeout);
-      clearInterval((window as any).pricesInterval);
-    };
-  }, []);
 
   if (shops.length > 0 && !shops.includes(shopName)) {
     notFound();
   }
+
+  const paymentInProgress = useRef(false);
 
   useEffect(() => {
     if (cardData === null || buyItem === null || paymentInProgress.current)
@@ -87,7 +49,7 @@ export default function ShopPage() {
         backButtonLink="/terminal"
       />
       <br />
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
         {items.map((item) => {
           const onClick = () => {
             setBuyItem({ name: item.name, price: item.prices[shopName] });
@@ -99,7 +61,7 @@ export default function ShopPage() {
               <Item
                 name={item.name}
                 price={item.prices[shopName]} // cena pro aktuální shop
-                normalPrice={item.normalPrice} // třeba "běžná cena"
+                normalPrice={item.normalPrice} // běžná cena
               />
             </div>
           );

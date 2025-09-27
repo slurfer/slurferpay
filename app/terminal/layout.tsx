@@ -7,9 +7,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <PhoneLayout>
-      <CardProvider>{children}</CardProvider>;
-    </PhoneLayout>
-  );
+  return <CardProvider>{children}</CardProvider>;
 }
