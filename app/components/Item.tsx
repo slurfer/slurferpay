@@ -13,19 +13,8 @@ export default function Item({
   price: number;
   normalPrice: number;
 }) {
-  const { setModalState, setCardData, setBuyItem } = useCard();
-
-  const onClick = () => {
-    setBuyItem({ name, price });
-    setCardData(null);
-    setModalState("reading");
-  };
-
   return (
-    <div
-      className="border rounded w-[90%] p-4 m-4 bg-yellow-500 text-black"
-      onClick={onClick}
-    >
+    <div className="border rounded w-[90%] p-4 m-4 bg-yellow-500 text-black">
       {name}
       <br />
       {price} Kč

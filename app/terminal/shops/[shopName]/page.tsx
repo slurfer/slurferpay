@@ -8,7 +8,8 @@ import { ApiPrices } from "@/types/api/prices";
 import RefreshCounter from "@/app/components/RefreshCounter";
 
 export default function ShopPage() {
-  const { cardData, buyItem, setBuyItem, setModalState } = useCard();
+  const { cardData, buyItem, setBuyItem, setModalState, setCardData } =
+    useCard();
   const { shopName }: { shopName: string } = useParams();
 
   const [items, setItems] = useState<ApiPrices["items"]>([]);
@@ -87,14 +88,22 @@ export default function ShopPage() {
       />
       <br />
       <div className="grid grid-cols-2">
-        {items.map((item) => (
-          <Item
-            key={item.name}
-            name={item.name}
-            price={item.prices[shopName]} // cena pro aktuální shop
-            normalPrice={item.normalPrice} // třeba "běžná cena"
-          />
-        ))}
+        {items.map((item) => {
+          const onClick = () => {
+            setBuyItem({ name: item.name, price: item.prices[shopName] });
+            setCardData(null);
+            setModalState("reading");
+          };
+          return (
+            <div onClick={onClick} key={item.name}>
+              <Item
+                name={item.name}
+                price={item.prices[shopName]} // cena pro aktuální shop
+                normalPrice={item.normalPrice} // třeba "běžná cena"
+              />
+            </div>
+          );
+        })}
       </div>
       <RefreshCounter />
     </div>
