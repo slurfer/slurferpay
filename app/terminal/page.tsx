@@ -1,33 +1,40 @@
 "use client";
-import { decodeNfcRecord } from "@/util/nfc";
+
 import { useCard } from "@/context/CardModalContext";
-import { useEffect } from "react";
-import ItemButton from "@/app/components/Buttons/Button";
-import LinkButton from "@/app/components/Buttons/LinkButton";
 import Header from "../components/Header";
-import config from "@/config/shops.json";
 import PhoneLayout from "../components/PhoneLayout";
+import LinkButton from "@/app/components/Buttons/LinkButton";
+import config from "@/config/shops.json"; // static import
+import { ShopType } from "@/types/ItemType";
 
 export default function Home() {
-  const shops: string[] = config.shops;
+  // Extract shops from JSON
+  const shops: ShopType[] = config.shops;
 
   return (
     <PhoneLayout>
       <Header blueText="Terminal" showBackButton={true} backButtonLink="/" />
-      <div className="w-full m-15"></div>
 
+      <div className="my-4"></div>
+
+      {/* Shops buttons */}
       {shops.map((shop) => (
-        <LinkButton key={shop} type="subs" link={`/terminal/shops/${shop}`}>
-          {shop}
+        <LinkButton
+          key={shop.name}
+          bgColor={shop.color}
+          link={`/terminal/shops/${shop.name}`}
+        >
+          {shop.name}
         </LinkButton>
       ))}
 
-      <div className="w-full m-15"></div>
+      <div className="my-4"></div>
 
-      <LinkButton type="tool" link="/terminal/read">
+      {/* Other terminal actions */}
+      <LinkButton bgColor="gray" link="/terminal/read">
         Read
       </LinkButton>
-      <LinkButton type="tool" link="/terminal/write">
+      <LinkButton bgColor="gray" link="/terminal/write">
         Write
       </LinkButton>
     </PhoneLayout>

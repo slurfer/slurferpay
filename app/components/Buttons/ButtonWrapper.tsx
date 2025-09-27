@@ -1,13 +1,10 @@
 export default function ButtonWrapper({
   children,
-  type,
+  bgColor,
 }: {
   children: React.ReactNode;
-  type: "tool" | "subs" | "add";
+  bgColor: string;
 }) {
-  const bgColor =
-    type === "tool" ? "gray" : type === "subs" ? "orange" : "green";
-
   return (
     <>
       <div

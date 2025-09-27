@@ -4,15 +4,15 @@ import ButtonWrapper from "./ButtonWrapper";
 export default function LinkButton({
   children,
   link,
-  type,
+  bgColor,
 }: {
   children: React.ReactNode;
   link: string;
-  type: "tool" | "subs" | "add";
+  bgColor: string;
 }) {
   return (
     <Link href={link}>
-      <ButtonWrapper type={type}>{children}</ButtonWrapper>
+      <ButtonWrapper bgColor={bgColor}>{children}</ButtonWrapper>
     </Link>
   );
 }

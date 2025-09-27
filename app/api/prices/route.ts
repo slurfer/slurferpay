@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import config from "@/config/shops.json";
-import { ItemType } from "@/types/ItemType";
+import { ItemType, ShopType } from "@/types/ItemType";
 import { ApiPrices } from "@/types/api/prices";
 
 function getRandomItem<T>(list: T[]): T {
@@ -21,15 +21,16 @@ function getPricesForItem(
 
 export async function GET() {
   const items: ItemType[] = config.items;
-  const shops: string[] = config.shops;
+  const shops: ShopType[] = config.shops;
+  const shopNames = shops.map((shop) => shop.name);
 
   const response: ApiPrices = {
     items: items.map((item) => ({
       name: item.name,
-      prices: getPricesForItem(item, shops),
+      prices: getPricesForItem(item, shopNames),
       normalPrice: Math.max(...item.prices),
     })),
-    shops,
+    shops: shopNames,
   };
 
   return NextResponse.json(response);
